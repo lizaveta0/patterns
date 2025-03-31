@@ -26,7 +26,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
       - name: Build with Gradle
-        run: ./gradlew test --tests "CardDeliveryTest"
+        run: ./gradlew test --tests "CardDeliveryTest" --info -Dselenide.headless=true
       - name: install service API
         run: java -jar  ./artifacts/app-ibank.jar -P:profile=test &
       - name: Build with Gradle
