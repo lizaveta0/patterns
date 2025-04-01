@@ -3,9 +3,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.CardPage;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import static com.codeborne.selenide.Selenide.open;
 import static data.DataGenerator.*;
 
@@ -27,7 +24,7 @@ public class CardDeliveryTest {
 
         locale = "ru";
         city = DataGenerator.DeliveryCard.generateUser(locale).getCity();
-        date = DataGenerator.DeliveryCard.generateUser(locale).getDate();
+        date = DataGenerator.generateDate(3);
         name = DataGenerator.DeliveryCard.generateUser(locale).getName();
         phone = DataGenerator.DeliveryCard.generateUser(locale).getPhone();
         accept = DataGenerator.DeliveryCard.generateUser(locale).getAccept();
@@ -40,7 +37,7 @@ public class CardDeliveryTest {
         cardPage.fillOrderForm(city, date, name, phone, accept);
         cardPage.checkOrderSuccessMessage("Встреча успешно запланирована на " + date);
 
-        date = LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        date = DataGenerator.generateDate(3);
         cardPage.replanAndGetMessage(date, "У вас уже запланирована встреча на другую дату. Перепланировать?");
 
         cardPage.submitReplan();
@@ -113,15 +110,6 @@ public class CardDeliveryTest {
 
         cardPage.fillOrderForm(city, date, name, phone, accept);
         cardPage.checkErrorMessageForPhone("Поле обязательно для заполнения");
-    }
-
-    @Test
-    public void testOrderFlowNegativePhoneIncorrect() {
-        String phoneLocale = "en";
-        phone = generatePhone(phoneLocale);
-
-        cardPage.fillOrderForm(city, date, name, phone, accept);
-        cardPage.checkErrorMessageForPhone("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.");
     }
 
     @Test

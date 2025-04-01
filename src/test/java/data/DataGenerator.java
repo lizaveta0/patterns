@@ -34,10 +34,11 @@ public class DataGenerator {
 
         return futureDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
+
+
     @Value
     public static class UserInfo {
         String city;
-        String date;
         String name;
         String phone;
         Boolean accept;
@@ -48,7 +49,7 @@ public class DataGenerator {
         }
 
         public static UserInfo generateUser(String locale) {
-            return new UserInfo(generateAddress(locale), generateDate(3), generateName(locale),generatePhone(locale), true);
+            return new UserInfo(generateAddress(locale), generateName(locale),generatePhone(locale), true);
         }
     }
 

@@ -1,14 +1,12 @@
 package pages;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
-import java.time.Duration;
-
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static java.time.Duration.*;
+import static java.time.Duration.ofSeconds;
 
 public class CardPage {
 
