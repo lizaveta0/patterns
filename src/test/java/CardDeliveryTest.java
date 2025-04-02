@@ -23,11 +23,12 @@ public class CardDeliveryTest {
         cardPage = new CardPage();
 
         locale = "ru";
-        city = DataGenerator.DeliveryCard.generateUser(locale).getCity();
+        UserInfo userInfo = DataGenerator.DeliveryCard.generateUser(locale);
+        city = userInfo.getCity();
         date = DataGenerator.generateDate(3);
-        name = DataGenerator.DeliveryCard.generateUser(locale).getName();
-        phone = DataGenerator.DeliveryCard.generateUser(locale).getPhone();
-        accept = DataGenerator.DeliveryCard.generateUser(locale).getAccept();
+        name = userInfo.getName();
+        phone = userInfo.getPhone();
+        accept = userInfo.getAccept();
 
     }
 
